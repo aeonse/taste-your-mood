@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Example</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="centered-text">taste your mood.</div>
+    <div class="echo-text">taste your mood.</div>
+
+    <div class="button-grid-top">
+    <button class="glass-button" onclick="getDish('savory')">savory</button>
+    <button class="glass-button" onclick="getDish('umami')">umami</button>
+    <button class="glass-button" onclick="getDish('street')">street</button>
+    </div>
+
+    <div class="button-grid-mid">
+    <button class="glass-button" onclick="getDish('comfort')">comfort</button>
+    <button class="glass-button" onclick="getDish('sweet')">sweet</button>
+    <button class="glass-button" onclick="getDish('spicy')">spicy</button>
+    </div>
+
+    <!-- <div class="button-grid-bot"> -->
+    <!-- <button class="glass-button" onclick="getDish('salty')">salty</button> -->
+    <!-- </div> -->
+    
+    <script>
+      function getDish(type) {
+    
+        fetch(`/dish/${type}`)
+        .then(response => response.json())
+        .then(dishes => {
+            const dishesString = dishes.join(',');
+            window.location.href = `/dish.html?type=${type}&dishes=${dishesString}`;
+        })
+        .catch(error => {
+            console.error("Error fetching dish:", error);
+        });
+      }
+  
+
+    </script>
+</body>
+</html>

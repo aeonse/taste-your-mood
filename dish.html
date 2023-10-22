@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetched Dishes</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1 id="title"></h1>
+    <ul id="dishList"></ul>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+        const dishes = urlParams.get('dishes').split(',');
+        const dishList = document.getElementById('dishList');
+        const title = document.getElementById('title');
+
+        title.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)} Dishes`;
+
+        dishes.forEach(dishName => {
+            const listItem = document.createElement('li');
+            listItem.textContent = dishName;
+            dishList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
